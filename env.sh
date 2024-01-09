@@ -47,11 +47,15 @@ ch() {
   fzf --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs open
 }
 
+
 # Re source Zsh
 alias zsrc='source ~/.zshrc'
 alias zenv='vim ~/.oh-my-zsh/env.sh'
+alias zgit='vim ~/.oh-my-zsh/plugins/git/git.plugin.zsh'
 
-
+# See aliases
+alias cenv='cat ~/.oh-my-zsh/env.sh'
+alias cgit='cat ~/.oh-my-zsh/plugins/git/git.plugin.zsh'
 
 # Tooling Aliases
 alias nrw='npm run watch'
@@ -76,56 +80,9 @@ alias snp='cd ~/Volumes/Sites/snp'
 alias snpdata='cd ~/Volumes/Sites/snpdata'
 alias sir='cd ~/Volumes/Sites/shopify-integration-refapp'
 alias web='cd ~/Volumes/Sites/web'
-
-# git aliases
-
-# ----------------------
-# Git Aliases
-# ----------------------
-alias ga='git add'
-alias gaa='git add .'
-alias gaaa='git add --all'
-alias gau='git add --update'
-alias gb='git branch'
-alias gbd='git branch --delete '
-alias gc='git commit'
-alias gcm='git commit --message'
-alias gcf='git commit --fixup'
-alias gco='git checkout'
-alias gcob='git checkout -b'
-alias gcom='git checkout master'
-alias gcos='git checkout staging'
-alias gcod='git checkout develop'
-alias gd='git diff'
-alias gda='git diff HEAD'
-alias gdc='git diff --cached'
-alias gi='git init'
-alias glg='git log --graph --oneline --decorate --all'
-alias gld='git log --pretty=format:"%h %ad %s" --date=short --all'
-alias ghist='git log --pretty=format:"%h %ad %s" --date=short --all'
-alias gm='git merge --no-ff'
-alias gma='git merge --abort'
-alias gmc='git merge --continue'
-alias gp='git pull'
-alias gpr='git pull --rebase'
-alias gr='git restore'
-alias gra='git restore .'
-alias gst='git status'
-alias gss='git status --short'
-alias gstash='git stash'
-alias gsta='git stash apply'
-alias gstd='git stash drop'
-alias gstl='git stash list'
-alias gstp='git stash pop'
-alias gsts='git stash save'
-
-# ----------------------
-# Git Functions
-# ----------------------
-# Git log find by commit message
-function glf() { git log --all --grep="$1"; }
-
-
+alias cl='cd ~/Volumes/Sites/clsfcc'
+alias webs='cd ~/Volumes/Sites/web-shared'
+alias githelp='cat /Users/miketay/.oh-my-zsh/plugins/git/git.plugin.zsh'
  # ----------------------
  # sfcc-ci alias / functions
  # ----------------------
@@ -137,7 +94,7 @@ function sfchelp () { sfc && sfcc-ci --help; }
 
 function sfclist () { sfc && sfcc-ci sandbox:list }
 
-function sfccreate () { sfc & sfcc-ci sandbox:create -r abcn -j -t 0; }
+function sfccreate () { sfc & sfcc-ci sandbox:create -r "$1" -j -t 0; }
 
 function sfcget () { sfc && sfcc-ci sandbox:get --sandbox "$1"; }
 
@@ -145,8 +102,23 @@ function sfcrestart () { sfc && sfcc-ci sandbox:restart --sandbox "$1"; }
 
 function sfcstart () { sfc && sfcc-ci sandbox:start --sandbox "$1"; }
 
-function sfcstop () { sfc && sfcci-ci sandbox:stop --sandbox "$1"; }
+function sfcstop () { sfc && sfcc-ci sandbox:stop --sandbox "$1"; }
+
+function sfcdelete () { sfc && sfcc-ci sandbox:delete --sandbox "$1"; }
 
 function sfchardreset () { sfc && sfcc-ci sandbox:reset --sandbox "$1"; }
 
 function sfccodev () { sfc && sfcc-ci code:list --instance "$1"; }
+
+
+# ----------------------
+# IDE functions
+# ----------------------
+funciton ws () {
+    open -na "WebStorm.app" --args "$1";
+}
+
+funciton vs () {
+ open -na "Visual Studio Code.app" --args "$1";
+}
+
