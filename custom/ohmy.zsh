@@ -1,4 +1,7 @@
+# aliases for oh my zsh customizations
+alias ohmy='cd ~/.oh-my-zsh/custom/'
 alias vohmy='vim ~/.oh-my-zsh/custom/ohmy.zsh'
+alias cohmy='cat ~/.oh-my-zsh/custom/ohmy.zsh'
 
 # find where an alias is defined - for functions use whence 'whence -v whencealias'
 function whencealias(){
@@ -7,6 +10,7 @@ function whencealias(){
  fi
 }
 
-
+# alias to sort the folder/files in the current directory by date
+alias las='la -tU'
 
 
