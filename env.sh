@@ -18,7 +18,7 @@ alias cppcompile='c++ -std=c++11 -stdlib=libc++'
 alias g='git'
 
 # Re source Zsh
-alias zsrc='source ~/.zshrc'
+alias zsrc='omz reload'
 alias zenv='vim ~/.oh-my-zsh/env.sh'
 alias zgit='vim ~/.oh-my-zsh/plugins/git/git.plugin.zsh'
 
