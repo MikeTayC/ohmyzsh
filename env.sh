@@ -43,7 +43,6 @@ alias wil='cd ~/Volumes/Sites/wil'
 alias dci='cd ~/Volumes/Sites/dci'
 alias aa='cd ~/Volumes/Tools/serverless/authalert'
 alias uec='cd ~/Volumes/Sites/uec'
-alias sfcc='cd ~/Volumes/Sites/sfcc'
 alias lc='cd ~/Volumes/Sites/lc'
 alias snp='cd ~/Volumes/Sites/snp'
 alias snpdata='cd ~/Volumes/Sites/snpdata'
@@ -52,33 +51,6 @@ alias web='cd ~/Volumes/Sites/web'
 alias cl='cd ~/Volumes/Sites/clsfcc'
 alias webs='cd ~/Volumes/Sites/web-shared'
 alias githelp='cat /Users/miketay/.oh-my-zsh/plugins/git/git.plugin.zsh'
- # ----------------------
- # sfcc-ci alias / functions
- # ----------------------
-alias sfc='cd ~/Volumes/Tools/sfcc-ci'
-
-function sfcauth () { sfc && sfcc-ci auth:login; }
-
-function sfchelp () { sfc && sfcc-ci --help; }
-
-function sfclist () { sfc && sfcc-ci sandbox:list }
-
-function sfccreate () { sfc & sfcc-ci sandbox:create -r "$1" -j -t 0; }
-
-function sfcget () { sfc && sfcc-ci sandbox:get --sandbox "$1"; }
-
-function sfcrestart () { sfc && sfcc-ci sandbox:restart --sandbox "$1"; }
-
-function sfcstart () { sfc && sfcc-ci sandbox:start --sandbox "$1"; }
-
-function sfcstop () { sfc && sfcc-ci sandbox:stop --sandbox "$1"; }
-
-function sfcdelete () { sfc && sfcc-ci sandbox:delete --sandbox "$1"; }
-
-function sfchardreset () { sfc && sfcc-ci sandbox:reset --sandbox "$1"; }
-
-function sfccodev () { sfc && sfcc-ci code:list --instance "$1"; }
-
 
 # ----------------------
 # IDE functions

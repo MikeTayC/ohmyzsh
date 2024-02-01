@@ -4,7 +4,8 @@
 
 #######
 # aliases for oh my zsh customizations
-#######
+######
+alias vzsh='vim ~/.zshrc'
 alias ohmy='cd ~/.oh-my-zsh/custom/'
 alias vohmy='vim ~/.oh-my-zsh/custom/ohmy.zsh'
 alias cohmy='cat ~/.oh-my-zsh/custom/ohmy.zsh'

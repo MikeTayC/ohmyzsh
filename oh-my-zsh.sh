@@ -91,7 +91,7 @@ is_plugin() {
 
 # Add all defined plugins to fpath. This must be done
 # before running compinit.
-for plugin ($plugins); do
+ for plugin ($plugins); do
   if is_plugin "$ZSH_CUSTOM" "$plugin"; then
     fpath=("$ZSH_CUSTOM/plugins/$plugin" $fpath)
   elif is_plugin "$ZSH" "$plugin"; then
@@ -100,6 +100,20 @@ for plugin ($plugins); do
     echo "[oh-my-zsh] plugin '$plugin' not found"
   fi
 done
+
+# Load all of the plugins that were defined in ~/.zshrc
+# for plugin ($plugins); do
+#  timer=$(($(gdate +%s%N)/1000000))
+#  if [ -f $ZSH_CUSTOM/plugins/$plugin/$plugin.plugin.zsh ]; then
+#    source $ZSH_CUSTOM/plugins/$plugin/$plugin.plugin.zsh
+#  elif [ -f $ZSH/plugins/$plugin/$plugin.plugin.zsh ]; then
+#    source $ZSH/plugins/$plugin/$plugin.plugin.zsh
+#  fi
+#  now=$(($(gdate +%s%N)/1000000))
+#  elapsed=$(($now-$timer))
+#  echo $elapsed":" $plugin
+#done
+
 
 # Figure out the SHORT hostname
 if [[ "$OSTYPE" = darwin* ]]; then
@@ -152,7 +166,7 @@ unset zcompdump_revision zcompdump_fpath zcompdump_refresh
 # zcompile the completion dump file if the .zwc is older or missing.
 if command mkdir "${ZSH_COMPDUMP}.lock" 2>/dev/null; then
   zrecompile -q -p "$ZSH_COMPDUMP"
-  command rm -rf "$ZSH_COMPDUMP.zwc.old" "${ZSH_COMPDUMP}.lock" 
+  command rm -rf "$ZSH_COMPDUMP.zwc.old" "${ZSH_COMPDUMP}.lock"
 fi
 
 _omz_source() {

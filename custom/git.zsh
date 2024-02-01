@@ -266,3 +266,10 @@ alias gpl='git pull'
 
 alias gwch='git whatchanged -p --abbrev-commit --pretty=medium'
 alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify --no-gpg-sign -m "--wip-- [skip ci]"'
+
+function gclc() { 
+  local prefix=git rev-parse --abbrev-ref HEAD |  sed 's/.*\/\(LCR2-\([0-9]*\)\).*/\1/'
+  git commit -m "$prefix - $2" 
+
+}
+function gcna() { git commit -m "NO TICKET - $1" }
