@@ -8,6 +8,8 @@
 
 # Display graphics settings
 alias sys='system_profiler SPDisplaysDataType'
+alias showdir='defaults write com.apple.Finder AppleShowAllFiles true'
+alias hidedir='defaults write com.apple.Finder AppleShowAllFiles false'
 
 #####
 # functions
