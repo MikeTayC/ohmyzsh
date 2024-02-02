@@ -7,3 +7,6 @@
 
 # history range - usage: history -E -l $1 $2
 alias hsr='history -E -l'
+
+alias backup_history="cp $HOME/.zsh_history $HOME/.zsh_history_backups/zsh_history_$(date +\%Y_\%m_\%d).bak"
+
