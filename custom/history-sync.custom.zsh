@@ -1,3 +1,7 @@
+# history-sync plugin requires GNU sed - it keeps erroring on macos version 
+# brew install gnu-sed -> gives us gsed - we'll set the alias ehre so it'll work on 
+# zsh history sync plugin - SEE  custom/plugins/before-plugins
+
 # your zsh_history file location
 ZSH_HISTORY_FILE="${HOME}/.zsh_history"
 # your git project for housing your zsh_history file
