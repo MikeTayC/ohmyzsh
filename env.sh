@@ -43,14 +43,15 @@ alias wil='cd ~/Volumes/Sites/wil'
 alias dci='cd ~/Volumes/Sites/dci'
 alias aa='cd ~/Volumes/Tools/serverless/authalert'
 alias uec='cd ~/Volumes/Sites/uec'
+alias sfcc='cd ~/Volumes/Sites/sfcc'
 alias lc='cd ~/Volumes/Sites/lc'
 alias snp='cd ~/Volumes/Sites/snp'
 alias snpdata='cd ~/Volumes/Sites/snpdata'
 alias sir='cd ~/Volumes/Sites/shopify-integration-refapp'
 alias web='cd ~/Volumes/Sites/web'
-alias cl='cd ~/Volumes/Sites/clsfcc'
 alias webs='cd ~/Volumes/Sites/web-shared'
 alias githelp='cat /Users/miketay/.oh-my-zsh/plugins/git/git.plugin.zsh'
+
 
 # ----------------------
 # IDE functions
