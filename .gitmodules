@@ -7,6 +7,6 @@
 [submodule "custom/plugins/zsh-autocomplete"]
 	path = custom/plugins/zsh-autocomplete
 	url = https://github.com/marlonrichert/zsh-autocomplete.git
-[submodule "/Users/miketay/.oh-my-zsh/custom/themes/powerlevel10k"]
-	path = /Users/miketay/.oh-my-zsh/custom/themes/powerlevel10k
+[submodule "custom/themes/powerlevel10k"]
+	path = custom/themes/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
