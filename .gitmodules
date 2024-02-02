@@ -16,3 +16,6 @@
 [submodule "custom/plugins/zsh-eza"]
 	path = custom/plugins/zsh-eza
 	url = git@github.com:renovate-bot/z-shell-_-zsh-eza.git
+[submodule "custom/plugins/history-sync"]
+	path = custom/plugins/history-sync
+	url = git@github.com:wulfgarpro/history-sync.git
