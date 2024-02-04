@@ -27,4 +27,9 @@ function whencealias(){
 # alias to sort the folder/files in the current directory by date
 alias las='la -tU'
 
-
+#alias for benchmarking zsh load times
+alias bench='/usr/bin/time zsh -i -c exit'
+function bigbench() {
+  for i in $(seq 1 10); do /usr/bin/time /bin/zsh -i -c exit; done;
+}
+alias zio='zsh -xv'
