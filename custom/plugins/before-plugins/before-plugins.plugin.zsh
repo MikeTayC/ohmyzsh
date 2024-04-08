@@ -9,3 +9,4 @@ alias sed='gsed'
 # zsh-nvm plugin directives
 # lazy loading node/nvm - these must vars must be set before plugin
 export NVM_LAZY_LOAD=true
+export NVM_LAZY_LOAD_EXTRA_COMMANDS=('git')

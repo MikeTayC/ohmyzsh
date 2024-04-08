@@ -19,3 +19,12 @@ export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
 # change autocomplete entry color to be darker
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=232'
 
+# https://github.com/marlonrichert/zsh-autocomplete?tab=readme-ov-file#make-enter-submit-the-command-line-straight-from-the-menu
+# Enter auto submits the command from autocomplete
+#bindkey -M menuselect '\t' .accept-line
+#bindkey -M menuselect "^[OC" accept-search
+#bindkey '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
+
+#bindkey '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
+#bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
+#bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete

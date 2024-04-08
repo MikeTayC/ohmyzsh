@@ -1,0 +1,13 @@
+# export BLUEACORN_BOOTSTRAP_DIR="/Users/miketay/blueacorn/bootstrap"
+# export BLUEACORN_PROJ_DIR="/Users/miketay/blueacorn"
+# export MACHINE_STORAGE_PATH="/etc/blueacorn/docker-machine"
+# export BLUEACORN_SERVICE_CREDENTIALS="/Users/miketay/devops-docker/machines/service-credentials"
+# export PATH="$PATH:/Users/miketay/.badevops/bin"
+
+export LC_CTYPE=C
+export LC_ALL="en_US.UTF-8"
+export LANG="en_US.UTF-8"
+export RELEASE_OAUTH_TOKEN=ba249774292592d17937331630e494ca13bf84cf
+export PATH="$HOME/.yarn/bin:$PATH"
+# export PATH=/Applications/XAMPP/xamppfiles/bin:$PATH
+

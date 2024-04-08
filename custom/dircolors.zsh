@@ -14,6 +14,7 @@
 alias dircolors="gdircolors"
 alias dirthemes='lt ~/dir_colors'
 
+alias lta='lt --all'
 # We need to run this command to ensure
 # ZSH and GNU dircolors ('gdircolors' cmd)
 # properly load the Solarized GNU ls ('gls' cmd) color
