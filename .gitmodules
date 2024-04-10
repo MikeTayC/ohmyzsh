@@ -19,3 +19,6 @@
 [submodule "custom/plugins/history-sync"]
 	path = custom/plugins/history-sync
 	url = git@github.com:wulfgarpro/history-sync.git
+[submodule "custom/plugins/zsh-nvm"]
+	path = custom/plugins/zsh-nvm
+	url = git@github.com:lukechilds/zsh-nvm.git
