@@ -50,13 +50,15 @@ alias gloga='git log --oneline --decorate --graph --all'
 alias glgd='git log --graph --oneline --decorate --all'
 alias glpf='git log --pretty=format:"%h %ad %s" --date=short --all'
 alias ghist='git log --pretty=format:"%h %ad %s" --date=short --all'
-
+alias gh='git log -n 1 --pretty=format:"%H"'
+alias ghd='git log -n 1 --pretty=format:"%H" develop'
 
 alias gd='git diff'
 alias gda='git diff HEAD'
 alias gdc='git diff --cached'
 
 alias gm='git merge'
+alias gmd='git merge develop'
 alias gma='git merge --abort'
 
 alias gp='git push'
@@ -88,7 +90,29 @@ function gclc() {
 }
 
 function gcna() { git commit -m "NO TICKET - $1" }
-
 function gcu() { git checkout "unstable/release-$1" }
-
 function gch() { git checkout "hotfix/release-$1" }
+function gmu() { git merge "unstable/release-$1" }
+function gmh() { git merge "hotfix/release-$1" }
+
+function gsr() {
+  ## detach head for saftey --quiet to reduce commands
+  git checkout --quiet --detach HEAD
+  
+  # git fetch origin master:master develop:develop
+  for arg
+  do
+    if [[ -n $(git ls-remote --heads origin refs/heads/unstable/release-"$arg") ]]; then
+      printf '%s\n' "unstable/release-$arg exists - fetching"
+      git fetch origin unstable/release-"$arg":unstable/release-"$arg"
+    elif [[ -n $(git ls-remote --heads origin refs/heads/hotfix/release-"$arg") ]]; then
+       printf '%s\n' "hotfix/release-$arg exists - fetching"
+       git fetch origin unstable/release-"$arg":unstable/release-"$arg"
+    else
+      printf '%s\n' "There are no unstable/hotfix with version: $arg"
+    fi
+
+  done
+  # Reattach head
+  git checkout --quiet -
+}
