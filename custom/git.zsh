@@ -17,12 +17,12 @@ alias gba='git branch -a'
 alias gbd='git branch -d'
 alias gbD='git branch -D'
 
-alias gcm='git commit -m'
+# alias gcm='git commit -m'
 alias gcf='git config --list'
 alias master='git checkout master'
 alias develop='git checkout develop'
 alias gco='git checkout'
-alias gcob='git checkout -b'
+alias gcb='git checkout -b'
 alias gcp='git cherry-pick'
 alias gcpa='git cherry-pick --abort'
 alias gcpc='git cherry-pick --continue'
@@ -48,11 +48,10 @@ alias glola="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgr
 alias glog='git log --oneline --decorate --graph'
 alias gloga='git log --oneline --decorate --graph --all'
 alias glgd='git log --graph --oneline --decorate --all'
-alias glpf='git log --pretty=format:"%h %ad %s" --date=short --all'
 alias ghist='git log --pretty=format:"%h %ad %s" --date=short --all'
-alias gh='git log -n 1 --pretty=format:"%H"'
+alias gh='git log -n 1 --pretty=format:"<< %Cred%H%Creset >>%C(auto)%d%Creset %n- %C(blue)%s (%C(dim green)%ar)"'
 alias ghd='git log -n 1 --pretty=format:"%H" develop'
-
+alias gl='git log -n 5 --pretty=format:" %C(dim blue)<<%Creset %C(bold yellow)%H%Creset %C(dim blue)>>%n%C(auto)%d%Creset %n%n    %C(dim blue)-%Creset %C(magenta)%s %n    %C(dim blue)-%Creset %C(bold blue)%an<%Cred%ae> (%C(dim green)%ar) %n%n %C(dim yellow)------------------------------------------------------------------------------------------ %n"'
 alias gd='git diff'
 alias gda='git diff HEAD'
 alias gdc='git diff --cached'
@@ -79,13 +78,20 @@ alias gpl='git pull'
 
 alias gwch='git whatchanged -p --abbrev-commit --pretty=medium'
 
-function gclc() { 
-  jira=$(git rev-parse --abbrev-ref HEAD | sed -ne 's/.*\/\(LCR2-\([0-9]*\)\).*/\1/p')
+function gcm() { 
+  branch=$(git rev-parse --abbrev-ref HEAD)
+  jira=$(printf $branch | sed -ne 's/.*\/\(LCR2-\([0-9]*\)\).*/\1/p')
 
   if [[ -n "${jira/[ ]*\n/}" ]]; then
     git commit -m "$jira - $1"
   else
-    git commit -m "NO TICKET - $1"
+    # Checks if hotfix/release branch, to prefix it; otherwise no ticket
+    release=$(printf $branch | sed -ne 's/.*\/\(release-[0-9].[0-9].[0-9]\).*/\1/p')
+    if [[ -n "${release/[ ]*\n/}" ]]; then
+      git commit -m "$(print -r -- "${release//release-/Release }") - $1"
+    else
+      git commit -m "NO TICKET - $1"
+    fi
   fi
 }
 
@@ -94,6 +100,8 @@ function gcu() { git checkout "unstable/release-$1" }
 function gch() { git checkout "hotfix/release-$1" }
 function gmu() { git merge "unstable/release-$1" }
 function gmh() { git merge "hotfix/release-$1" }
+function gcbu() { git checkout -b "unstable/release-$1" }
+function gcbh(){ git checkout -b "hotfix/release-$1" }
 
 function gsr() {
   ## detach head for saftey --quiet to reduce commands
@@ -115,4 +123,37 @@ function gsr() {
   done
   # Reattach head
   git checkout --quiet -
+}
+
+# set master to develops current HEAD
+function git-remaster() {
+  local dev="develop"
+  local m="master"
+
+  git checkout $dev
+
+  printf "Pulling $dev from origin..\n"
+  git fetch
+  git pull origin $dev
+
+  printf "Latest commit on develop:\n"
+  git log -n 1 --pretty=format:"%Cred%H%Creset - %C(yellow)%s" $dev
+
+  git checkout $m
+
+  printf "Hard reset to latest commit..\n"
+  git reset --hard $(git log -n 1 --format="%H" $dev)
+
+  # gl - custom git log alias 
+  gl -3
+
+  if read -q "choice?Press Y/y to push this to $m: "; then
+    printf "\nEntered: $choice ..\n"
+    git push
+  else
+    printf "\nEntered: $choice .. so push it yourself\n"
+    
+    # git log alias
+    gl
+  fi
 }
