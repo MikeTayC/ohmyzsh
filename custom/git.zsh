@@ -19,10 +19,11 @@ alias gbD='git branch -D'
 
 # alias gcm='git commit -m'
 alias gcf='git config --list'
-alias master='git checkout master'
-alias develop='git checkout develop'
+alias mast='git checkout master'
+alias dev='git checkout develop'
 alias gco='git checkout'
 alias gcb='git checkout -b'
+alias gcob='git checkout -b'
 alias gcp='git cherry-pick'
 alias gcpa='git cherry-pick --abort'
 alias gcpc='git cherry-pick --continue'
@@ -103,6 +104,7 @@ function gmh() { git merge "hotfix/release-$1" }
 function gcbu() { git checkout -b "unstable/release-$1" }
 function gcbh(){ git checkout -b "hotfix/release-$1" }
 
+# update the unstable and hotfix branches with any remote origin changes
 function gsr() {
   ## detach head for saftey --quiet to reduce commands
   git checkout --quiet --detach HEAD
@@ -111,13 +113,48 @@ function gsr() {
   for arg
   do
     if [[ -n $(git ls-remote --heads origin refs/heads/unstable/release-"$arg") ]]; then
-      printf '%s\n' "unstable/release-$arg exists - fetching"
+      printf '\033[32;1m%s\033[0m\n' "unstable/release-$arg exists - fetching"
       git fetch origin unstable/release-"$arg":unstable/release-"$arg"
     elif [[ -n $(git ls-remote --heads origin refs/heads/hotfix/release-"$arg") ]]; then
-       printf '%s\n' "hotfix/release-$arg exists - fetching"
-       git fetch origin unstable/release-"$arg":unstable/release-"$arg"
+       printf '\033[34;1m%s\033[0m\n' "hotfix/release-$arg exists - fetching"
+       git fetch origin hotfix/release-"$arg":hotfix/release-"$arg"
     else
-      printf '%s\n' "There are no unstable/hotfix with version: $arg"
+      printf '\033[0;30m%s\033[0m\n' "There are no unstable/hotfix with version: $arg"
+    fi
+
+  done
+  # Reattach head
+  git checkout --quiet -
+}
+
+# update unstabe/hotfix and merge latest from develop 
+function gsr-develop() {
+   local dev="develop"
+   
+
+   printf '\033[32;1m%s\033[0m\n' "Pulling $dev from origin.." 
+   git checkout $dev
+   git fetch
+   git pull origin $dev
+
+   for arg
+   do
+     if [[ -n $(git ls-remote --heads origin refs/heads/unstable/release-"$arg") ]]; then
+       
+       printf '\033[34;1m%s\033[0m\n' "Merging (--ff-only) $dev into unstable/release-$arg.."
+       git fetch . "$dev":unstable/release-"$arg"
+   
+       printf '\033[34;1m%s\033[0m\n' "Pushing unstable/release-$arg to origin.."
+       git push origin unstable/release-"$arg"
+     elif [[ -n $(git ls-remote --heads origin refs/heads/hotfix/release-"$arg") ]]; then
+      
+      printf '\033[33;1m%s\033[0m\n' "Merging (--ff-only) $dev into hotfix/release-$arg.."
+      git fetch . "$dev":hotfix/release-"$arg"
+
+      printf '\033[35;1m%s\033[0m\n' "Pushing hotfix/release-$arg to origin.."
+      git push origin hotfix/release-"$arg"
+    else
+      printf '\033[0;30m%s\033[0m\n' "There are no unstable/hotfix with version: $arg"
     fi
 
   done
@@ -132,26 +169,26 @@ function git-remaster() {
 
   git checkout $dev
 
-  printf "Pulling $dev from origin..\n"
+  printf '\033[32;1m%s\033[0m\n' "Pulling $dev from origin.."
   git fetch
   git pull origin $dev
 
-  printf "Latest commit on develop:\n"
+  printf '\033[31;1m%s\033[0m\n' "Latest commit on $dev:"
   git log -n 1 --pretty=format:"%Cred%H%Creset - %C(yellow)%s" $dev
 
   git checkout $m
 
-  printf "Hard reset to latest commit..\n"
+  printf '\033[34;1m%s\033[0m\n' "Hard reset to latest commit.."
   git reset --hard $(git log -n 1 --format="%H" $dev)
 
   # gl - custom git log alias 
   gl -3
 
   if read -q "choice?Press Y/y to push this to $m: "; then
-    printf "\nEntered: $choice ..\n"
+    printf '\033[35;1m%s\033[0m\n' "\nEntered: $choice .."
     git push
   else
-    printf "\nEntered: $choice .. so push it yourself\n"
+    printf  '\033[0;30m%s\033[0m\n' "\nEntered: $choice .. so push it yourself"
     
     # git log alias
     gl
