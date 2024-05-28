@@ -33,3 +33,12 @@ function bigbench() {
   for i in $(seq 1 10); do /usr/bin/time /bin/zsh -i -c exit; done;
 }
 alias zio='zsh -xv'
+
+timezsh() {
+  shell=${1-$SHELL}
+  for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
+}
+
+zprofiler() {
+  time ZSH_DEBUGRC=1 zsh -i -c exit
+}
