@@ -101,20 +101,6 @@ is_plugin() {
   fi
 done
 
-# Load all of the plugins that were defined in ~/.zshrc
-# for plugin ($plugins); do
-#  timer=$(($(gdate +%s%N)/1000000))
-#  if [ -f $ZSH_CUSTOM/plugins/$plugin/$plugin.plugin.zsh ]; then
-#    source $ZSH_CUSTOM/plugins/$plugin/$plugin.plugin.zsh
-#  elif [ -f $ZSH/plugins/$plugin/$plugin.plugin.zsh ]; then
-#    source $ZSH/plugins/$plugin/$plugin.plugin.zsh
-#  fi
-#  now=$(($(gdate +%s%N)/1000000))
-#  elapsed=$(($now-$timer))
-#  echo $elapsed":" $plugin
-#done
-
-
 # Figure out the SHORT hostname
 if [[ "$OSTYPE" = darwin* ]]; then
   # macOS's $HOST changes with dhcp, etc. Use ComputerName if possible.
