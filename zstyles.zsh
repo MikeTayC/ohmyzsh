@@ -1,16 +1,3 @@
-# On slow systems, checking the cached .zcompdump file to see if it must be 
-# regenerated adds a noticable delay to zsh startup.  This little hack restricts 
-# it to once a day.  It should be pasted into your own completion file.
-# https://gist.github.com/ctechols/ca1035271ad134841284
-# https://github.com/ggteixeira/macOS-Dotfiles/blob/17681071cf0f9905ddcd1936efe025c83878307d/.zshrc#L138
-autoload -Uz compinit 
-if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
-	compinit;
-else
-	compinit -C;
-fi;
-
-
  # --------------------------------------------------------------------
  # Completion Styles - From long ago during initial Oh-my-zsh set up
  # --------------------------------------------------------------------
@@ -59,4 +46,4 @@ fi;
  #fignore=(.o .c~ .old .pro)i
 
  # Colors for files and directory
-#zstyle ':completion:*:*:*:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*:*:*:*:default' list-colors ${(s.:.)LS_COLORS}
