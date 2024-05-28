@@ -22,3 +22,6 @@
 [submodule "custom/plugins/zsh-nvm"]
 	path = custom/plugins/zsh-nvm
 	url = git@github.com:lukechilds/zsh-nvm.git
+[submodule "custom/plugins/zsh_trace"]
+	path = custom/plugins/zsh_trace
+	url = git@github.com:elventear/zsh_trace.git
