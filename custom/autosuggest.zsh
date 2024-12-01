@@ -17,7 +17,7 @@ export ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
 
 # change autocomplete entry color to be darker
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=232'
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=103'
 
 # https://github.com/marlonrichert/zsh-autocomplete?tab=readme-ov-file#make-enter-submit-the-command-line-straight-from-the-menu
 # Enter auto submits the command from autocomplete
