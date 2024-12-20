@@ -5,8 +5,3 @@
 # brew install gnu-sed -> gives us gsed - we'll set the alias ehre so it'll work on
 # zsh history sync plugin. Sething the sed to gsed here
 alias sed='gsed'
-
-# zsh-nvm plugin directives
-# lazy loading node/nvm - these must vars must be set before plugin
-#export NVM_LAZY_LOAD=true
-#export NVM_LAZY_LOAD_EXTRA_COMMANDS=('git')
