@@ -31,6 +31,7 @@ function iterm-semantic-history () {
 	jpg
 	dmg
 	zip
+  plist
 	.localized
     )
 
