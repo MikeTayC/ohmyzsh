@@ -18,7 +18,6 @@ alias gba='git branch -a'
 alias gbd='git branch -d'
 alias gbD='git branch -D'
 
-# alias gcm='git commit -m'
 alias gcf='git config --list'
 alias mast='git checkout master'
 alias dev='git checkout develop'
@@ -85,20 +84,25 @@ alias gwch='git whatchanged -p --abbrev-commit --pretty=medium'
 alias nolint='cp package.json.nolint package.json'
 alias lint='cp package.json.lint package.json'
 
+# alias gcm='git commit -m'
 function gcm() { 
-  branch=$(git rev-parse --abbrev-ref HEAD)
-  jira=$(printf $branch | sed -ne 's/.*\/\(LCR2-\([0-9]*\)\).*/\1/p')
+  if [[ "$(basename "$PWD")" == "lc" ]]; then
+    branch=$(git rev-parse --abbrev-ref HEAD)
+    jira=$(printf $branch | sed -ne 's/.*\/\(LCR2-\([0-9]*\)\).*/\1/p')
 
-  if [[ -n "${jira/[ ]*\n/}" ]]; then
-    git commit -m "$jira - $1"
-  else
-    # Checks if hotfix/release branch, to prefix it; otherwise no ticket
-    release=$(printf $branch | sed -ne 's/.*\/\(release-[0-9].[0-9].[0-9]\).*/\1/p')
-    if [[ -n "${release/[ ]*\n/}" ]]; then
-      git commit -m "$(print -r -- "${release//release-/Release }") - $1"
+    if [[ -n "${jira/[ ]*\n/}" ]]; then
+      git commit -m "$jira - $1"
     else
-      git commit -m "NO TICKET - $1"
+      # Checks if hotfix/release branch, to prefix it; otherwise no ticket
+      release=$(printf $branch | sed -ne 's/.*\/\(release-[0-9].[0-9].[0-9]\).*/\1/p')
+      if [[ -n "${release/[ ]*\n/}" ]]; then
+        git commit -m "$(print -r -- "${release//release-/Release }") - $1"
+      else
+        git commit -m "NO TICKET - $1"
+      fi
     fi
+  else
+    git commit -m "$1" 
   fi
 }
 
