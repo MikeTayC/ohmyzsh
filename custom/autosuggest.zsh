@@ -29,5 +29,7 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=103'
 #bindkey '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 
 #bindkey '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
-#bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
-#bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
+
+# rebinds the tab key back to menu cycling
+bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
+bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete

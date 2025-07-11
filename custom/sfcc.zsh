@@ -1,8 +1,6 @@
 # -------------------------
 # sfcc-ci alias / functions
 # -------------------------
-alias csfc="cat $ZSH_CUSTOM/sfcc.zsh"
-alias vsfc="vim $ZSH_CUSTOM/sfcc.zsh"
 alias sfc="cd ~/Volumes/Tools/sfcc-ci"
 alias sfci="sfcc-ci"
 alias sfcc="sfcc-ci"
@@ -28,4 +26,7 @@ function sfchardreset () { sfc && sfcc-ci sandbox:reset --sandbox "$1";  cd -1;}
 
 function sfccodev () { sfc && sfcc-ci code:list --instance "$1";  cd -1;}
 
-
+# Tooling Aliases
+alias nrw='npm run watch'
+alias nrw='npm run watch'
+alias nrw='npm run watch'

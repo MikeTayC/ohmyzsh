@@ -1,14 +1,29 @@
 ###############
 # oh my zsh - customizations 
 ###############
+# ----------------------
+# CD Aliases
+# ----------------------
+alias sites='cd ~/Volumes/Sites'
+alias tool='cd ~/Volumes/Tools'
+alias lc='cd ~/Volumes/Sites/lc'
+alias web='cd ~/Volumes/Sites/web'
+alias lc2='cd ~/Volumes/Sites/lc2'
 
 #######
 # aliases for oh my zsh customizations
 ######
 alias vzsh='vim ~/.zshrc'
-alias ohmy='cd ~/.oh-my-zsh/custom/'
-alias vohmy='vim ~/.oh-my-zsh/custom/ohmy.zsh'
-alias cohmy='cat ~/.oh-my-zsh/custom/ohmy.zsh'
+alias czsh='cat ~/.zshrc'
+alias ohmy="cd $ZSH/custom/"
+alias vohmy="vim $ZSH/oh-my-zsh.sh"
+alias cohmy="cat $ZSH/oh-my-zsh.sh"
+alias cgit="cat $ZSH/custom/git.zsh"
+# Re source Zsh
+alias zsrc='omz reload'
+alias cleanzsrc="rm $ZSH_COMPDUMP && zsrc"
+
+
 
 #######
 # methods for searching for aliases/commands
@@ -41,4 +56,26 @@ timezsh() {
 
 zprofiler() {
   time ZSH_DEBUGRC=1 zsh -i -c exit
+}
+
+# File search functions
+function f() { find . -iname "*$1*" ${@:2} }
+function r() { grep "$1" ${@:2} -R . }
+
+# Create a folder and move into it in one command
+function mkcd() { mkdir -p "$@" && cd "$_"; }
+
+# ----------------------
+# IDE functions
+# ----------------------
+funciton vs () {
+ open -na "Visual Studio Code.app" --args "$1";
+}
+
+function zshdumptest () {
+  setopt LOCAL_OPTIONS extendedglob
+  for dump in ~/.cache/zsh/zcompdump/.zcomdump*(N.ms+    10); do
+    echo "reg compinit"
+  done
+  echo "compinit -C"
 }

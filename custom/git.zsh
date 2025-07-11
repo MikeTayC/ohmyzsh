@@ -1,4 +1,5 @@
-alias vgit='vim ~/.oh-my-zsh/custom/git.zsh'
+alias vgit="vim $ZSH/custom/git.zsh"
+alias cgit="cat $ZSH/custom/git.zsh"
 #
 # Aliases
 # (sorted alphabetically)
