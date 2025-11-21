@@ -9,6 +9,7 @@ alias tool='cd ~/Volumes/Tools'
 alias lc='cd ~/Volumes/Sites/lc'
 alias web='cd ~/Volumes/Sites/web'
 alias lc2='cd ~/Volumes/Sites/lc2'
+alias lc3='cd ~/Volumes/Sites/lc3'
 
 #######
 # aliases for oh my zsh customizations
@@ -69,7 +70,7 @@ function mkcd() { mkdir -p "$@" && cd "$_"; }
 # IDE functions
 # ----------------------
 funciton vs () {
- open -na "Visual Studio Code.app" --args "$1";
+  open -na "Visual Studio Code.app" --args "$(pwd)/$1";
 }
 
 function zshdumptest () {

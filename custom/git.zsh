@@ -65,12 +65,11 @@ alias gma='git merge --abort'
 alias gp='git push'
 
 alias gr='git restore'
+alias grs='git restore --staged'
 alias gra='git restore .'
 alias grm='git rm'
 alias grmc='git rm --cached'
 
-alias gs='git stash'
-alias gsa='git stash apply'
 alias gsb='git status -sb'
 alias gss='git status -s'
 alias gst='git status'
@@ -87,7 +86,7 @@ alias lint='cp package.json.lint package.json'
 
 # alias gcm='git commit -m'
 function gcm() { 
-  if [[ "$(basename "$PWD")" == "lc" ]]; then
+  if [[ "$(basename "$PWD")" == "lc"* ]]; then
     branch=$(git rev-parse --abbrev-ref HEAD)
     jira=$(printf $branch | sed -ne 's/.*\/\(LCR2-\([0-9]*\)\).*/\1/p')
 
