@@ -27,6 +27,8 @@ alias cgit="cat $ZSH/custom/git.zsh"
 alias zsrc='omz reload'
 alias cleanzsrc="rm $ZSH_COMPDUMP && zsrc"
 
+# BAiCi devops helpers
+alias ckube="cat $ZSH/plugins/kubectl/kubectl.plugin.zsh"
 
 
 #######
