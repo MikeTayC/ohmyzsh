@@ -4,12 +4,15 @@
 # ----------------------
 # CD Aliases
 # ----------------------
-alias sites='cd ~/Volumes/Sites'
-alias tool='cd ~/Volumes/Tools'
-alias lc='cd ~/Volumes/Sites/lc'
-alias web='cd ~/Volumes/Sites/web'
-alias lc2='cd ~/Volumes/Sites/lc2'
-alias lc3='cd ~/Volumes/Sites/lc3'
+alias tool="cd ~/Volumes/Tools"
+
+SITES='~/Volumes/Sites'
+alias sites="cd $SITES"
+alias lc="cd $SITES/lc"
+alias web="cd $SITES/web"
+alias lc2="cd $SITES/lc2"
+alias lc3="cd $SITES/lc3"
+alias blm="cd $SITES/bluemercury-infrastructure"
 
 #######
 # aliases for oh my zsh customizations
