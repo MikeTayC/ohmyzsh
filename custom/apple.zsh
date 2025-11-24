@@ -42,7 +42,7 @@ function iterm-semantic-history () {
     if [[ -d $1 ]]; then
         cd $1 && ll
     elif [[ -f $1 ]]; then
-        vim $1
+        cat $1
     else
         echo "$1 - value is probably not a directory or file"
     fi
