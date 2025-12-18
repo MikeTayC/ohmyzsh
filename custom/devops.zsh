@@ -25,6 +25,7 @@ alias ave='aws-vault exec'
 ###
 export KUBEDIR="$HOME/.config/.kube/config.d"
 export KUBECONFIG=$(printf "%s:" "$KUBEDIR"/*(N) | sed 's/:$//')
+alias kubed="cd $KUBEDIR"
 
 ###
 # New User Setup - Pull Kubeconfig
@@ -60,8 +61,9 @@ function kubeconfig-pull() {
     echo "cluster_name: $cluster_name"
     echo "cluster_alias: $cluster_alias"
     echo 'pulling kubeconfig for us-east-1..'
-    ave $aws_profile -- aws --region=us-east-1 eks update-kubeconfig --name $cluster_name --kubeconfig=$KUBEDIR/$cluster_alias --alias $cluster_alias
-  
+
+    echo "Executing..\naws-vault exec $aws_profile -- aws --region=us-east-1 eks update-kubeconfig --name $cluster_name --kubeconfig=$KUBEDIR/$cluster_alias -- alias $cluster_alias"
+   ave $aws_profile -- aws --region=us-east-1 eks update-kubeconfig --name $cluster_name --kubeconfig=$KUBEDIR/$cluster_alias --alias $cluster_alias
   fi
 }
 
@@ -74,6 +76,9 @@ function kubeconfig-pull() {
 ###
 function kube-pod() {
   if ! [ -z $1 ]; then
+    echo "Executing..\naws-vault exec $1 -- kubectl get pods -n kube-system"
     ave $1 -- kubectl get pods -n kube-system
+  else
+    echo 'no profile_name (eg blm-qa)'
   fi 
 }

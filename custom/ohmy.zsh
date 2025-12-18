@@ -29,7 +29,7 @@ alias cleanzsrc="rm $ZSH_COMPDUMP && zsrc"
 
 # BAiCi devops helpers
 alias ckube="cat $ZSH/plugins/kubectl/kubectl.plugin.zsh"
-
+alias app-casker="sh ~/.mac-setter-upper/app-casker.sh"
 
 #######
 # methods for searching for aliases/commands

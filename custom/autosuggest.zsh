@@ -33,3 +33,7 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=103'
 # rebinds the tab key back to menu cycling
 bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
 bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
+
+# disbable the possiblity prompts like "do you wish to see all 165 possibilities"
+zstyle ':completion:*' list-prompt   ''
+zstyle ':completion:*' select-prompt ''
