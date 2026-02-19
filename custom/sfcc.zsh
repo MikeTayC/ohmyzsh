@@ -29,3 +29,6 @@ function sfccodev () { sfc && sfcc-ci code:list --instance "$1";  cd -1;}
 # Tooling Aliases
 alias nrw='npm run watch'
 alias nr='npm run'
+alias nrlj='npm run lint:js'
+alias nrls='npm run lint:css'
+alias nrl='npm run lint'

@@ -16,6 +16,20 @@
 # https://git.aweirdimagination.net/perelman/kill-child-jobs/src/branch/ master/pkill-P-full-example. sh
 # From https://unix.stackexchange.com/a/240736
 ###
+
+function cafe-kill() {
+    
+   echo 'check for countdown/caffeinate'
+   pgrep -l caffeinate
+   pgrep -l countdown
+   
+   echo "Killing caffeinate processes.."
+   pkill -f -l "caffeinate"
+
+   echo "Killing countdown processes.."
+   pkill -f -l "countdown"
+}
+
 function cafe() {
   sec=$(($1*3600))
   # background process started in subshell - hard to kill - gave up and used pkill (grep pid killer)

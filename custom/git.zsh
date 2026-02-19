@@ -66,6 +66,7 @@ alias gp='git push'
 
 alias gr='git restore'
 alias grs='git restore --staged'
+
 alias gra='git restore .'
 alias grm='git rm'
 alias grmc='git rm --cached'
@@ -83,6 +84,10 @@ alias gwch='git whatchanged -p --abbrev-commit --pretty=medium'
 
 alias nolint='cp package.json.nolint package.json'
 alias lint='cp package.json.lint package.json'
+
+function ohmy-submodules(){
+  git submodule update --recursive --remote
+}
 
 # alias gcm='git commit -m'
 function gcm() { 
