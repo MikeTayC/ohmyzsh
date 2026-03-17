@@ -96,18 +96,18 @@ function gcm() {
     jira=$(printf $branch | sed -ne 's/.*\/\(LCR2-\([0-9]*\)\).*/\1/p')
 
     if [[ -n "${jira/[ ]*\n/}" ]]; then
-      git commit -m "$jira - $1"
+      git commit -m "$jira - $1" $2
     else
       # Checks if hotfix/release branch, to prefix it; otherwise no ticket
       release=$(printf $branch | sed -ne 's/.*\/\(release-[0-9].[0-9].[0-9]\).*/\1/p')
       if [[ -n "${release/[ ]*\n/}" ]]; then
-        git commit -m "$(print -r -- "${release//release-/Release }") - $1"
+        git commit -m "$(print -r -- "${release//release-/Release }") - $1" $2
       else
-        git commit -m "NO TICKET - $1"
+        git commit -m "NO TICKET - $1" $2
       fi
     fi
   else
-    git commit -m "$1" 
+    git commit -m "$1" $2
   fi
 }
 
