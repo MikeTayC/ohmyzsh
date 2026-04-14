@@ -42,7 +42,7 @@ export DIR_COLOR_THEME="dircolors.trapdoor"
 alias dircolors="gdircolors"
 alias dirthemes="lt $DIR_COLOR_CONFIG"
 alias lta='lt --all'
-
+alias t='tree'
 # We need to run this command to ensure
 # ZSH and GNU dircolors ('gdircolors' cmd)
 # properly load the Solarized GNU ls ('gls' cmd) color

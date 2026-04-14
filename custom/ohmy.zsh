@@ -15,7 +15,7 @@ alias web="cd $SITES/web"
 alias lc2="cd $SITES/lc2"
 alias lc3="cd $SITES/lc3"
 alias blm="cd $SITES/blm"
-
+alias train="cd $SITES/devops-lc"
 #######
 # aliases for oh my zsh customizations
 ######
@@ -31,9 +31,6 @@ alias cleanzsrc="rm $ZSH_COMPDUMP && zsrc"
 
 # BAiCi devops helpers
 alias ckube="cat $ZSH/plugins/kubectl/kubectl.plugin.zsh"
-
-# directories
-alias t="tree"
 
 #######
 # methods for searching for aliases/commands
