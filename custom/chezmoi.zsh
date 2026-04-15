@@ -3,17 +3,22 @@ alias checd='cd ~/.local/share/chezmoi/'
 alias chesrc='chezmoi source-path'
 alias checonfig='cd ~/.config/chezmoi'
 
-# credit: https://github.com/twpayne/chezmoi/discussions/1598
-# "vim FILE_NAME" automatically runs "chezmoi edit FILE_NAME" command if the file is under management by chemoi.
-# otherwise just give the all arguments to neovim
-# function vim() {
-#   if [ $# -eq 0 ]; then
-#     vim
-#     return
-#   fi
+vim() {
+  if [ $# -eq 0 ]; then
+    command vim
+    return
+  fi
 
-#   # Added "--hardlink=false" option to get neovim undo available.
-#   chezmoi verify $1 > /dev/null 2>&1\
-#     && chezmoi edit --watch --hardlink=false $1\
-#     || vim $@
-# }
+  local file="$1"
+
+  # normalize path (important)
+  file="$(realpath "$file" 2>/dev/null || echo "$file")"
+
+  if chezmoi source-path "$file" >/dev/null 2>&1; then
+    chezmoi edit --apply "$file"
+  else
+    command vim "$@"
+  fi
+}
+
+alias vvim='command vim'
