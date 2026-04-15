@@ -16,6 +16,7 @@ alias lc2="cd $SITES/lc2"
 alias lc3="cd $SITES/lc3"
 alias blm="cd $SITES/blm"
 alias train="cd $SITES/devops-lc"
+
 #######
 # aliases for oh my zsh customizations
 ######

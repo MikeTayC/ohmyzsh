@@ -8,6 +8,7 @@ complete -o nospace -C $HOMEBREW_PREFIX/bin/terragrunt terragrunt
 
 
 # Aliases
+alias vs-train="train && ave --duration=6h training -- code devops-lc.code-workspace"
 alias cterra="cat $ZSH_CUSTOM/plugins/terragrunt/terragrunt.plugin.zsh"
 alias tg='terragrunt'
 
