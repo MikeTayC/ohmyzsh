@@ -1,3 +1,8 @@
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
+
+export FZF_CTRL_R_OPTS="--tac"
+
 # fzf - fuzzy history
 # fh - search in your command history and execute selected command
 fh() {
@@ -27,3 +32,39 @@ ch() {
   awk -F $sep '{printf "%-'$cols's  \x1b[36m%s\x1b[m\n", $1, $2}' |
   fzf --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs open
 }
+
+#fzf-history-widget() {
+#    local selected
+#
+#  selected=$(
+#    fc -rl 1 |
+#    sed 's/^[[:space:]]*[0-9]\+[[:space:]]\{1,\}//' |
+#    fzf --no-sort --exact --query '' --preview 'echo {}'
+#  ) || return
+#
+#  LBUFFER="$selected"
+#  zle reset-prompt
+#}
+
+fzf-history-widget() {
+  emulate -L zsh
+
+  local selected
+
+  selected=$(
+    fc -rl 1 |
+    sed 's/^[[:space:]]*[0-9]\+[[:space:]]\{1,\}//' |
+    fzf --no-sort --exact --query '' \
+        --preview 'echo {}' \
+        --height 70%
+  )
+
+  [[ -z "$selected" ]] && return
+
+  # IMPORTANT: no stripping needed anymore (sed already cleaned it)
+  LBUFFER="$selected"
+  CURSOR=${#LBUFFER}
+}
+
+zle -N fzf-history-widget
+bindkey '^R' fzf-history-widget

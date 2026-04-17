@@ -13,7 +13,7 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 
 # https://github.com/zsh-users/zsh-autosuggestions/issues/351
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(bracketed-paste)
-
+ZSH_AUTOSUGGEST_IGNORE_WIDGETS+=("fzf-history-widget")
 # Disabling automatic widget re-binding
 export ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 
@@ -29,11 +29,3 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=103'
 #bindkey '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 
 #bindkey '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
-
-# rebinds the tab key back to menu cycling
-bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
-bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
-
-# disbable the possiblity prompts like "do you wish to see all 165 possibilities"
-zstyle ':completion:*' list-prompt   ''
-zstyle ':completion:*' select-prompt ''

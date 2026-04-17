@@ -26,7 +26,7 @@ alias ave='aws-vault exec'
 export KUBEDIR="$HOME/.config/.kube/config.d"
 export KUBECONFIG=$(printf "%s:" "$KUBEDIR"/*(N) | sed 's/:$//')
 alias kubed="cd $KUBEDIR"
-
+alias cdevops="$ZSH_CUSTOM/devops.zsh"
 ###
 # New User Setup - Pull Kubeconfig
 # https://blueacornici.atlassian.net/wiki/spaces/BLM/pages/5929041949/New+User+Setup#Pull-Kubeconfig

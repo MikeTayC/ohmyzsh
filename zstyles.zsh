@@ -1,49 +1,30 @@
- # --------------------------------------------------------------------
- # Completion Styles - From long ago during initial Oh-my-zsh set up
- # --------------------------------------------------------------------
+# https://github.com/aloxaf/fzf-tab?tab=readme-ov-file#configure
 
- # list of completers to use
- zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+# set descriptions format to enable group support
+# NOTE: don't use escape sequences (like '%F{red}%d%f') here, fzf-tab will ignore them
+zstyle ':completion:*:descriptions' format '[%d]'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
+zstyle ':completion:*' menu no
+# preview directory's content with eza when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+# custom fzf flags
+# NOTE: fzf-tab does not follow FZF_DEFAULT_OPTS by default
+zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2 --bind=tab:accept
+# To make fzf-tab follow FZF_DEFAULT_OPTS.
+# NOTE: This may lead to unexpected behavior since some flags break this plugin. See Aloxaf/fzf-tab#455.
+zstyle ':fzf-tab:*' use-fzf-default-opts yes
+# switch group using `<` and `>`
+zstyle ':fzf-tab:*' switch-group '<' '>'
 
- # allow one error for every three characters typed in approximate completer
- zstyle -e ':completion:*:approximate:*' max-errors \
-     'reply=( $(( ($#PREFIX+$#SUFFIX)/2 )) numeric )'
+# disbable the possiblity prompts like "do you wish to see all 165 possibilities"
+zstyle ':completion:*' list-prompt   ''
+zstyle ':completion:*' select-prompt ''
 
- # insert all expansions for expand completer
- zstyle ':completion:*:expand:*' tag-order all-expansions
+# fzf replace up arrow history
+bindkey '^[[A' fzf-history-widget
+bindkey "${terminfo[kcuu1]}" fzf-history-widget
 
- # formatting and messages
- zstyle ':completion:*' verbose yes
- zstyle ':completion:*:descriptions' format '%B%d%b'
- zstyle ':completion:*:messages' format '%d'
- zstyle ':completion:*:warnings' format 'No matches for: %d'
- zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
- zstyle ':completion:*' group-name ''
-
- # match uppercase from lowercase
- zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-
- # offer indexes before parameters in subscripts
- zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
-
- # command for process lists, the local web server details and host completion
- # on processes completion complete all user processes
- # zstyle ':completion:*:processes' command 'ps -au$USER'
-
- ## add colors to processes for kill completion
- zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-
- #zstyle ':completion:*:processes' command 'ps ax -o pid,s,nice,stime,args | sed "/ps/d"'
- zstyle ':completion:*:*:kill:*:processes' command 'ps --forest -A -o pid,user,cmd'
- zstyle ':completion:*:processes-names' command 'ps axho command'
- #zstyle ':completion:*:urls' local 'www' '/var/www/htdocs' 'public_html'
- #
- #NEW completion:
- # Filename suffixes to ignore during completion (except after rm command)
- zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' \
-     '*?.old' '*?.pro'
- # the same for old style completion
- #fignore=(.o .c~ .old .pro)i
-
- # Colors for files and directory
-zstyle ':completion:*:*:*:*:default' list-colors ${(s.:.)LS_COLORS}
